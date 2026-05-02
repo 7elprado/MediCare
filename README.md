@@ -225,3 +225,4 @@ Padrões de Commit
     test: Testes
 
     chore: Manutenção
+# MediCare
