@@ -24,68 +24,103 @@ Ajudar usuários a não esquecerem seus medicamentos, promovendo maior adesão a
 
 ## ✨ Funcionalidades
 
-| Funcionalidade | Status | Descrição |
-|----------------|--------|-----------|
+  | Funcionalidade | Status | Descrição |
+  
+  |----------------|--------|-----------|
+
 | CRUD de Medicamentos | ✅ Concluído | Cadastro, edição, listagem e exclusão |
+
 | Definição de Horários | ✅ Concluído | Configuração de horários por medicamento |
+
 | Registro de Tomadas | ✅ Concluído | Marcar quando tomou o medicamento |
+
 | Dashboard | ✅ Concluído | Visão geral com estatísticas |
+
 | Relatório de Adesão | ✅ Concluído | Percentual de cumprimento do tratamento |
+
 | Histórico | ✅ Concluído | Visualização de tomadas realizadas |
 
 ## 🛠️ Tecnologias Utilizadas
 
 ### Frontend
 | Tecnologia | Versão | Descrição |
+
 |------------|--------|-----------|
+
 | React.js | 18.2.0 | Biblioteca para construção da UI |
+
 | React Router DOM | 6.14.0 | Roteamento da aplicação |
+
 | Axios | 1.4.0 | Cliente HTTP para API |
+
 | CSS3 | - | Estilização e animações |
 
 ### Backend
 | Tecnologia | Versão | Descrição |
+
 |------------|--------|-----------|
+
 | Node.js | 18.x | Runtime JavaScript |
+
 | Express.js | 4.18.2 | Framework web |
+
 | PostgreSQL | 15 | Banco de dados relacional |
+
 | pg | 8.11.0 | Driver PostgreSQL |
 
 ### DevOps & Infrastructure
 | Tecnologia | Versão | Finalidade |
+
 |------------|--------|------------|
+
 | Docker | 24.x | Containerização |
+
 | Docker Compose | 2.x | Orquestração de containers |
+
 | Jenkins | 2.x | Pipeline CI/CD |
+
 | SonarQube | 9.x | Análise de qualidade |
+
 | Git | 2.x | Controle de versão |
+
 | GitHub | - | Repositório remoto |
+
 | GitFlow | - | Estratégia de branches |
+
 
 ## 🏗️ Arquitetura do Sistema
 
 ┌─────────────────────────────────────────────────────────────┐
-│ CLIENTE │
-│ (Navegador Web) │
-└─────────────────┬───────────────────────────────────────────┘
-│
-▼
-┌─────────────────────────────────────────────────────────────┐
-│ DOCKER COMPOSE │
-│ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐ │
-│ │ FRONTEND │ │ BACKEND │ │ POSTGRESQL │ │
-│ │ (Nginx) │◄─┤ (Node.js) │◄─┤ (DB) │ │
-│ │ Port: 3000 │ │ Port: 3001 │ │ Port: 5432 │ │
-│ └──────────────┘ └──────────────┘ └──────────────┘ │
-│ │ │ │ │
-│ └──────────────────┼──────────────────┘ │
-│ │ │
-└────────────────────────────┼─────────────────────────────────┘
-│
-┌────────▼────────┐
-│ REDE INTERNA │
-│ medicare_network│
-└─────────────────┘
+                      │ CLIENTE │
+                       
+│─────────────────────────────────────────────────────────────│
+                  │ (Navegador Web) │
+
+└───────────────────────────┬─────────────────────────────────┘
+
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────┐
+                  │ DOCKER COMPOSE │
+│ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐  │
+
+│  │ FRONTEND    │ │    BACKEND   │ │  POSTGRESQL  │  │
+
+│  │   (Nginx)   │ │◄─┤ (Node.js) │ │   ◄─┤ (DB)   │  │
+  
+│  │ Port: 3000  │ │ Port: 3001 │ │ │   Port: 5432 │  │
+
+│ └──────────────┘ └──────────────┘ └──────────────┘  │
+
+└──────────────────────────┼──────────────────────────┘
+                           │
+                  ┌────────▼────────┐
+                  ───────────────────
+                  │  REDE INTERNA   │
+                  ───────────────────
+                  │ medicare_network│
+                  ───────────────────
+                  └─────────────────┘
 
 
 
@@ -93,85 +128,163 @@ Ajudar usuários a não esquecerem seus medicamentos, promovendo maior adesão a
 
 MediCare/
 │
+
 ├── frontend/ # Aplicação React
+
 │ ├── public/
+
 │ │ ├── index.html
+
 │ │ └── manifest.json
+
 │ ├── src/
+
 │ │ ├── components/
+
 │ │ │ ├── common/
+
 │ │ │ │ ├── Header.jsx
+
 │ │ │ │ ├── Footer.jsx
+
 │ │ │ │ └── Loading.jsx
+
 │ │ │ ├── medicamentos/
+
 │ │ │ │ ├── MedicamentoForm.jsx
+
 │ │ │ │ ├── MedicamentoList.jsx
+
 │ │ │ │ ├── MedicamentoCard.jsx
+
 │ │ │ │ └── HorariosForm.jsx
+
 │ │ │ └── registros/
+
 │ │ │ └── RegistroTomada.jsx
+
 │ │ ├── pages/
+
 │ │ │ ├── Dashboard.jsx
+
 │ │ │ ├── MedicamentosPage.jsx
+
 │ │ │ ├── HistoricoPage.jsx
+
 │ │ │ └── RelatoriosPage.jsx
+
 │ │ ├── services/
+
 │ │ │ ├── api.js
+
 │ │ │ ├── horarioService.js
+
 │ │ │ ├── registroService.js
+
 │ │ │ └── relatorioService.js
+
 │ │ ├── styles/
+
 │ │ │ └── global.css
+
 │ │ ├── App.jsx
+
 │ │ └── index.js
+
 │ ├── Dockerfile
+
 │ ├── nginx.conf
+
 │ └── package.json
+
 │
+
 ├── backend/ # API Node.js
+
 │ ├── src/
+
 │ │ ├── controllers/
+
 │ │ │ ├── medicamentoController.js
+
 │ │ │ ├── horarioController.js
+
 │ │ │ ├── registroController.js
+
 │ │ │ └── relatorioController.js
+
 │ │ ├── models/
+
 │ │ ├── routes/
+
 │ │ │ ├── medicamentoRoutes.js
+
 │ │ │ ├── horarioRoutes.js
+
 │ │ │ ├── registroRoutes.js
+
 │ │ │ └── relatorioRoutes.js
+
 │ │ ├── config/
+
 │ │ │ └── database.js
+
 │ │ └── app.js
+
 │ ├── Dockerfile
+
 │ └── package.json
+
 │
+
 ├── database/ # Scripts do Banco
+
 │ ├── migrations/
+
 │ │ ├── 001_create_usuarios.sql
+
 │ │ ├── 002_create_medicamentos.sql
+
 │ │ ├── 003_create_horarios.sql
+
 │ │ └── 004_create_registros.sql
+
 │ └── init.sql
+
 │
+
 ├── docker/ # Configurações Docker
+
 │ ├── docker-compose.yml
+
 │ └── docker-compose.dev.yml
+
 │
+
 ├── jenkins/ # Pipeline CI/CD
+
 │ └── Jenkinsfile
+
 │
+
 ├── scripts/ # Scripts auxiliares
+
 │ ├── start.sh
+
 │ └── stop.sh
+
 │
+
 ├── .gitignore
+
 ├── .env.example
+
 ├── sonar-project.properties
+
 ├── README.md
+
 └── LICENSE
-text
+
 
 
 ## 📋 Pré-requisitos
@@ -191,12 +304,12 @@ git clone https://github.com/7elprado/MediCare.git
 cd MediCare
 
 2. Acesse a tag da etapa 2 (versão final)
-bash
+
 
 git checkout etapa2
 
 3. Execute com Docker Compose
-bash
+
 
 cd docker
 docker-compose up -d
