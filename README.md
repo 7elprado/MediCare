@@ -64,23 +64,19 @@ Ajudar usuários a não esquecerem seus medicamentos, promovendo maior adesão a
 
 
 ## 🏗️ Arquitetura do Sistema
-+------------------------------------------------------------------+
-| CLIENTE |
-| (Navegador Web) |
-+--------------------------------+---------------------------------+
-|
-v
-+------------------------------------------------------------------+
-| DOCKER COMPOSE |
-| |
-| +--------------+ +--------------+ +--------------+ |
-| | FRONTEND | | BACKEND | | POSTGRESQL | |
-| | (Nginx) |<-->| (Node.js) |<-->| (DB) | |
-| | Port: 3000 | | Port: 3001 | | Port: 5432 | |
-| +--------------+ +--------------+ +--------------+ |
-| |
-| medicare_network |
-+------------------------------------------------------------------+
+
+CLIENTE (Browser)
+│
+▼
+DOCKER COMPOSE
+│
+├──► FRONTEND (Nginx) ──► Porta 3000
+│ │
+│ ▼
+├──► BACKEND (Node.js) ──► Porta 3001
+│ │
+│ ▼
+└──► POSTGRESQL (DB) ──► Porta 5432
 
 
 
