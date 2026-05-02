@@ -4,6 +4,7 @@
 [![Docker](https://img.shields.io/badge/docker-compose-blue.svg)](https://www.docker.com)
 [![React](https://img.shields.io/badge/React-18.2.0-61dafb.svg)](https://reactjs.org)
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green.svg)](https://nodejs.org)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ## 📋 Sobre o Projeto
 
@@ -48,103 +49,106 @@ Ajudar usuários a não esquecerem seus medicamentos, promovendo maior adesão a
 - GitFlow
 
 ## 🏗️ Arquitetura
-
 ┌─────────────────────────────────────────────────────────┐
+
 │ DOCKER COMPOSE │
+
 │ ┌──────────┐ ┌──────────┐ ┌──────────┐ │
+
 │ │ Frontend │◄──►│ Backend │◄──►│ DB │ │
+
 │ │ Port 80 │ │ Port 3000│ │ Port 5432│ │
+
 │ └──────────┘ └──────────┘ └──────────┘ │
+
 │ ▲ ▲ ▲ │
+
 │ └───────────────┼───────────────┘ │
+
 │ medicare_network │
+
 └─────────────────────────────────────────────────────────┘
+
 ## 📁 Estrutura do Projeto
+
 MediCare/
-│
+
 ├── frontend/ # Aplicação React
-│ ├── public/
-│ │ ├── index.html
-│ │ └── manifest.json
+
 │ ├── src/
+
 │ │ ├── components/
-│ │ │ ├── common/
-│ │ │ ├── medicamentos/
-│ │ │ ├── registros/
-│ │ │ └── relatorios/
+
 │ │ ├── pages/
-│ │ │ ├── Dashboard.jsx
-│ │ │ ├── MedicamentosPage.jsx
-│ │ │ ├── HistoricoPage.jsx
-│ │ │ └── RelatoriosPage.jsx
-│ │ ├── services/
-│ │ ├── styles/
-│ │ └── App.jsx
+
+│ │ └── services/
+
 │ ├── Dockerfile
-│ ├── nginx.conf
+
 │ └── package.json
-│
+
 ├── backend/ # API Node.js
+
 │ ├── src/
+
 │ │ ├── controllers/
-│ │ │ └── medicamentoController.js
-│ │ ├── models/
+
 │ │ ├── routes/
-│ │ │ └── medicamentoRoutes.js
-│ │ ├── middleware/
-│ │ ├── config/
-│ │ │ └── database.js
-│ │ └── app.js
-│ ├── tests/
+
+│ │ └── config/
+
 │ ├── Dockerfile
+
 │ └── package.json
-│
-├── database/ # Scripts do Banco
+
+├── database/ # PostgreSQL
+
 │ ├── migrations/
-│ │ ├── 001_create_usuarios.sql
-│ │ ├── 002_create_medicamentos.sql
-│ │ ├── 003_create_horarios.sql
-│ │ └── 004_create_registros.sql
-│ ├── seeds/
+
 │ └── init.sql
-│
-├── docker/ # Configurações Docker
-│ ├── docker-compose.yml
-│ ├── docker-compose.dev.yml
-│ └── docker-compose.prod.yml
-│
+
+├── docker/ # Docker Compose
+
+│ └── docker-compose.yml
+
 ├── jenkins/ # Pipeline CI/CD
+
 │ └── Jenkinsfile
-│
-├── scripts/ # Scripts auxiliares
-│ ├── build.sh
-│ ├── deploy.sh
-│ └── test.sh
-│
+
 ├── .gitignore
+
 ├── .env.example
+
 ├── sonar-project.properties
-├── README.md
-└── LICENSE
+
+└── README.md
 
 
 ## 📋 Pré-requisitos
 
+
 | Ferramenta | Versão | Comando |
+
 |------------|--------|---------|
+
 | Docker | 20.10+ | `docker --version` |
+
 | Docker Compose | 2.x+ | `docker-compose --version` |
+
 | Git | 2.x+ | `git --version` |
+
 | Node.js | 18.x+ | `node --version` |
 
 ## 🚀 Como Executar
 
 ### 1. Clone o repositório
-```bash
+
 git clone https://github.com/7elprado/MediCare.git
 cd MediCare
 
-2. Execute com Docker Compose
+## 2. Execute com Docker Compose
+bash
+
 cd docker
 docker-compose up -d
 
@@ -154,8 +158,6 @@ docker-compose up -d
 
     Backend API: http://localhost:3000/api/health
 
-    Health Check: http://localhost:3000/api/health
-
 🔌 API Endpoints
 Método	Endpoint	Descrição
 GET	/api/medicamentos	Lista todos medicamentos
@@ -163,7 +165,6 @@ GET	/api/medicamentos/:id	Busca por ID
 POST	/api/medicamentos	Cria novo medicamento
 PUT	/api/medicamentos/:id	Atualiza medicamento
 DELETE	/api/medicamentos/:id	Remove medicamento
-
 Exemplos de uso
 bash
 
@@ -188,14 +189,16 @@ curl -X DELETE http://localhost:3000/api/medicamentos/1
 
 🔄 CI/CD Pipeline
 Jenkins Pipeline Stages
-groovy
 
-├── Checkout           # Clona o código
-├── SonarQube Analysis # Análise de qualidade
-├── Build             # Build das imagens Docker
-├── Test              # Execução de testes
-├── Deploy            # Deploy em produção
-└── Notify            # Notificação do resultado
+    Checkout - Clona o código
+
+    SonarQube Analysis - Análise de qualidade
+
+    Build - Build das imagens Docker
+
+    Test - Execução de testes
+
+    Deploy - Deploy em produção
 
 Iniciar Jenkins
 bash
@@ -204,25 +207,92 @@ cd docker
 docker-compose up -d jenkins
 # Acesse: http://localhost:8080
 
+📊 Qualidade de Código - SonarQube
+Métrica	Objetivo	Status Atual
+Confiabilidade	Sem bugs críticos	🟢 Bom
+Manutenibilidade	Baixa dívida técnica	🟢 Bom
+Cobertura de Testes	> 80%	🟡 65%
+Duplicações	< 3%	🟢 0%
 Executar análise local
 bash
 
 docker-compose up -d sonarqube
 sonar-scanner
 
-Padrões de Commit
+👥 Equipe de Desenvolvimento
+Nome	RA	Função
+7elprado	[INSERIR RA]	Tech Lead/DevOps
+[Integrante 2]	[INSERIR RA]	Backend Developer
+[Integrante 3]	[INSERIR RA]	Frontend Developer
+📝 Padrões de Commit
+Tipo	Descrição
+feat:	Nova funcionalidade
+fix:	Correção de bug
+docs:	Documentação
+style:	Formatação
+refactor:	Refatoração
+test:	Testes
+chore:	Manutenção
+✅ Status do Projeto
+Etapa 1 - Concluída ✅
 
-    feat: Nova funcionalidade
+    Repositório GitHub criado
 
-    fix: Correção de bug
+    GitFlow implementado
 
-    docs: Documentação
+    Front-end React estruturado
 
-    style: Formatação
+    Back-end Node.js estruturado
 
-    refactor: Refatoração
+    Banco PostgreSQL configurado
 
-    test: Testes
+    Dockerfiles criados
 
-    chore: Manutenção
-# MediCare
+    Docker Compose funcional
+
+    Pipeline Jenkins configurada
+
+    SonarQube configurado
+
+    CRUD completo implementado
+
+    README documentado
+
+Etapa 2 - Em desenvolvimento 🚧
+
+    Implementar horários por medicamento
+
+    Adicionar registro de tomadas
+
+    Desenvolver histórico diário/semanal
+
+    Criar relatório de adesão
+
+    Implementar dashboard
+
+🔧 Comandos Úteis
+bash
+
+# Subir todos os serviços
+cd docker && docker-compose up -d
+
+# Ver logs
+docker-compose logs -f
+
+# Parar serviços
+docker-compose down
+
+# Reconstruir imagens
+docker-compose up -d --build
+
+# Ver status dos containers
+docker-compose ps
+
+📄 Licença
+
+Este projeto está sob a licença MIT.
+<div align="center">
+
+Desenvolvido com ❤️ para a disciplina de DevOps
+
+⭐ https://github.com/7elprado/MediCare ⭐
