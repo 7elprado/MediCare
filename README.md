@@ -24,20 +24,13 @@ Ajudar usuários a não esquecerem seus medicamentos, promovendo maior adesão a
 
 ## ✨ Funcionalidades
 
-  | Funcionalidade | Status | Descrição |
-  
-  |----------------|--------|-----------|
-
+| Funcionalidade | Status | Descrição |
+|----------------|--------|-----------|
 | CRUD de Medicamentos | ✅ Concluído | Cadastro, edição, listagem e exclusão |
-
 | Definição de Horários | ✅ Concluído | Configuração de horários por medicamento |
-
 | Registro de Tomadas | ✅ Concluído | Marcar quando tomou o medicamento |
-
 | Dashboard | ✅ Concluído | Visão geral com estatísticas |
-
 | Relatório de Adesão | ✅ Concluído | Percentual de cumprimento do tratamento |
-
 | Histórico | ✅ Concluído | Visualização de tomadas realizadas |
 
 ## 🛠️ Tecnologias Utilizadas
