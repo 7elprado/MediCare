@@ -67,14 +67,21 @@ Ajudar usuários a não esquecerem seus medicamentos, promovendo maior adesão a
 
 CLIENTE (Browser)
 │
+
 ▼
+
 DOCKER COMPOSE
 │
+
 ├──► FRONTEND (Nginx) ──► Porta 3000
+
 │ │
-│ ▼
+  ▼
+
 ├──► BACKEND (Node.js) ──► Porta 3001
+
 │ │
+
 │ ▼
 └──► POSTGRESQL (DB) ──► Porta 5432
 
