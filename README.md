@@ -37,58 +37,39 @@ Ajudar usuários a não esquecerem seus medicamentos, promovendo maior adesão a
 
 ### Frontend
 | Tecnologia | Versão | Descrição |
-
 |------------|--------|-----------|
-
 | React.js | 18.2.0 | Biblioteca para construção da UI |
-
 | React Router DOM | 6.14.0 | Roteamento da aplicação |
-
 | Axios | 1.4.0 | Cliente HTTP para API |
-
 | CSS3 | - | Estilização e animações |
 
 ### Backend
 | Tecnologia | Versão | Descrição |
-
 |------------|--------|-----------|
-
 | Node.js | 18.x | Runtime JavaScript |
-
 | Express.js | 4.18.2 | Framework web |
-
 | PostgreSQL | 15 | Banco de dados relacional |
-
 | pg | 8.11.0 | Driver PostgreSQL |
 
 ### DevOps & Infrastructure
 | Tecnologia | Versão | Finalidade |
 
 |------------|--------|------------|
-
 | Docker | 24.x | Containerização |
-
 | Docker Compose | 2.x | Orquestração de containers |
-
 | Jenkins | 2.x | Pipeline CI/CD |
-
 | SonarQube | 9.x | Análise de qualidade |
-
 | Git | 2.x | Controle de versão |
-
 | GitHub | - | Repositório remoto |
-
 | GitFlow | - | Estratégia de branches |
 
 
 ## 🏗️ Arquitetura do Sistema
 
 ┌─────────────────────────────────────────────────────────────┐
-                      │ CLIENTE │
-                       
+│                             CLIENTE                         │
 │─────────────────────────────────────────────────────────────│
-                  │ (Navegador Web) │
-
+│                      (Navegador Web)                        │
 └───────────────────────────┬─────────────────────────────────┘
 
                             │
