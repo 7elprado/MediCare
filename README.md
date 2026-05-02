@@ -1,142 +1,186 @@
 # 🏥 MediCare - Sistema de Controle de Medicamentos
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/7elprado/MediCare)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/7elprado/MediCare)
 [![Docker](https://img.shields.io/badge/docker-compose-blue.svg)](https://www.docker.com)
 [![React](https://img.shields.io/badge/React-18.2.0-61dafb.svg)](https://reactjs.org)
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green.svg)](https://nodejs.org)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791.svg)](https://www.postgresql.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ## 📋 Sobre o Projeto
 
-O **MediCare** é uma aplicação web para auxiliar pacientes no controle e monitoramento da adesão ao tratamento medicamentoso.
+O **MediCare** é uma aplicação web completa desenvolvida para auxiliar pacientes no gerenciamento e monitoramento da adesão ao tratamento medicamentoso. O sistema permite que usuários cadastrem seus medicamentos, definam horários personalizados, registrem as tomadas realizadas e acompanhem estatísticas detalhadas de adesão ao tratamento.
 
-**Desenvolvido para disciplina de DevOps** - Demonstra conceitos de containerização, orquestração, CI/CD e qualidade de software.
+**Desenvolvido para disciplina de DevOps** - Demonstra conceitos de containerização, orquestração de serviços, CI/CD e análise de qualidade de software.
 
 ## 🎯 Objetivo
 
-Ajudar usuários a não esquecerem seus medicamentos, promovendo maior adesão ao tratamento.
+Ajudar usuários a não esquecerem seus medicamentos, promovendo maior adesão ao tratamento através de:
+- Registro organizado de medicamentos
+- Controle de horários personalizados
+- Histórico completo de tomadas
+- Relatórios de adesão
+- Dashboard com métricas
 
 ## ✨ Funcionalidades
 
 | Funcionalidade | Status | Descrição |
 |----------------|--------|-----------|
 | CRUD de Medicamentos | ✅ Concluído | Cadastro, edição, listagem e exclusão |
-| Definição de Horários | 🚧 Em desenvolvimento | Configuração de horários por medicamento |
-| Registro de Tomadas | 🚧 Em desenvolvimento | Marcar quando tomou o medicamento |
-| Histórico | 🚧 Em desenvolvimento | Visualização diária/semanal |
-| Relatórios | 🚧 Em desenvolvimento | Estatísticas de adesão |
+| Definição de Horários | ✅ Concluído | Configuração de horários por medicamento |
+| Registro de Tomadas | ✅ Concluído | Marcar quando tomou o medicamento |
+| Dashboard | ✅ Concluído | Visão geral com estatísticas |
+| Relatório de Adesão | ✅ Concluído | Percentual de cumprimento do tratamento |
+| Histórico | ✅ Concluído | Visualização de tomadas realizadas |
 
-## 🛠️ Tecnologias
+## 🛠️ Tecnologias Utilizadas
 
 ### Frontend
-- React.js 18.2.0
-- React Router DOM
-- Axios
-- CSS3
+| Tecnologia | Versão | Descrição |
+|------------|--------|-----------|
+| React.js | 18.2.0 | Biblioteca para construção da UI |
+| React Router DOM | 6.14.0 | Roteamento da aplicação |
+| Axios | 1.4.0 | Cliente HTTP para API |
+| CSS3 | - | Estilização e animações |
 
 ### Backend
-- Node.js 18.x
-- Express.js 4.18.2
-- PostgreSQL 15
-- JWT e Bcryptjs
+| Tecnologia | Versão | Descrição |
+|------------|--------|-----------|
+| Node.js | 18.x | Runtime JavaScript |
+| Express.js | 4.18.2 | Framework web |
+| PostgreSQL | 15 | Banco de dados relacional |
+| pg | 8.11.0 | Driver PostgreSQL |
 
-### DevOps
-- Docker 24.x
-- Docker Compose 2.x
-- Jenkins 2.x
-- SonarQube 9.x
-- Git/GitHub
-- GitFlow
+### DevOps & Infrastructure
+| Tecnologia | Versão | Finalidade |
+|------------|--------|------------|
+| Docker | 24.x | Containerização |
+| Docker Compose | 2.x | Orquestração de containers |
+| Jenkins | 2.x | Pipeline CI/CD |
+| SonarQube | 9.x | Análise de qualidade |
+| Git | 2.x | Controle de versão |
+| GitHub | - | Repositório remoto |
+| GitFlow | - | Estratégia de branches |
 
-## 🏗️ Arquitetura
-┌─────────────────────────────────────────────────────────┐
+## 🏗️ Arquitetura do Sistema
 
+┌─────────────────────────────────────────────────────────────┐
+│ CLIENTE │
+│ (Navegador Web) │
+└─────────────────┬───────────────────────────────────────────┘
+│
+▼
+┌─────────────────────────────────────────────────────────────┐
 │ DOCKER COMPOSE │
+│ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐ │
+│ │ FRONTEND │ │ BACKEND │ │ POSTGRESQL │ │
+│ │ (Nginx) │◄─┤ (Node.js) │◄─┤ (DB) │ │
+│ │ Port: 3000 │ │ Port: 3001 │ │ Port: 5432 │ │
+│ └──────────────┘ └──────────────┘ └──────────────┘ │
+│ │ │ │ │
+│ └──────────────────┼──────────────────┘ │
+│ │ │
+└────────────────────────────┼─────────────────────────────────┘
+│
+┌────────▼────────┐
+│ REDE INTERNA │
+│ medicare_network│
+└─────────────────┘
 
-│ ┌──────────┐ ┌──────────┐ ┌──────────┐ │
 
-│ │ Frontend │◄──►│ Backend │◄──►│ DB │ │
-
-│ │ Port 80 │ │ Port 3000│ │ Port 5432│ │
-
-│ └──────────┘ └──────────┘ └──────────┘ │
-
-│ ▲ ▲ ▲ │
-
-│ └───────────────┼───────────────┘ │
-
-│ medicare_network │
-
-└─────────────────────────────────────────────────────────┘
 
 ## 📁 Estrutura do Projeto
 
 MediCare/
-
+│
 ├── frontend/ # Aplicação React
-
+│ ├── public/
+│ │ ├── index.html
+│ │ └── manifest.json
 │ ├── src/
-
 │ │ ├── components/
-
+│ │ │ ├── common/
+│ │ │ │ ├── Header.jsx
+│ │ │ │ ├── Footer.jsx
+│ │ │ │ └── Loading.jsx
+│ │ │ ├── medicamentos/
+│ │ │ │ ├── MedicamentoForm.jsx
+│ │ │ │ ├── MedicamentoList.jsx
+│ │ │ │ ├── MedicamentoCard.jsx
+│ │ │ │ └── HorariosForm.jsx
+│ │ │ └── registros/
+│ │ │ └── RegistroTomada.jsx
 │ │ ├── pages/
-
-│ │ └── services/
-
+│ │ │ ├── Dashboard.jsx
+│ │ │ ├── MedicamentosPage.jsx
+│ │ │ ├── HistoricoPage.jsx
+│ │ │ └── RelatoriosPage.jsx
+│ │ ├── services/
+│ │ │ ├── api.js
+│ │ │ ├── horarioService.js
+│ │ │ ├── registroService.js
+│ │ │ └── relatorioService.js
+│ │ ├── styles/
+│ │ │ └── global.css
+│ │ ├── App.jsx
+│ │ └── index.js
 │ ├── Dockerfile
-
+│ ├── nginx.conf
 │ └── package.json
-
+│
 ├── backend/ # API Node.js
-
 │ ├── src/
-
 │ │ ├── controllers/
-
+│ │ │ ├── medicamentoController.js
+│ │ │ ├── horarioController.js
+│ │ │ ├── registroController.js
+│ │ │ └── relatorioController.js
+│ │ ├── models/
 │ │ ├── routes/
-
-│ │ └── config/
-
+│ │ │ ├── medicamentoRoutes.js
+│ │ │ ├── horarioRoutes.js
+│ │ │ ├── registroRoutes.js
+│ │ │ └── relatorioRoutes.js
+│ │ ├── config/
+│ │ │ └── database.js
+│ │ └── app.js
 │ ├── Dockerfile
-
 │ └── package.json
-
-├── database/ # PostgreSQL
-
+│
+├── database/ # Scripts do Banco
 │ ├── migrations/
-
+│ │ ├── 001_create_usuarios.sql
+│ │ ├── 002_create_medicamentos.sql
+│ │ ├── 003_create_horarios.sql
+│ │ └── 004_create_registros.sql
 │ └── init.sql
-
-├── docker/ # Docker Compose
-
-│ └── docker-compose.yml
-
+│
+├── docker/ # Configurações Docker
+│ ├── docker-compose.yml
+│ └── docker-compose.dev.yml
+│
 ├── jenkins/ # Pipeline CI/CD
-
 │ └── Jenkinsfile
-
+│
+├── scripts/ # Scripts auxiliares
+│ ├── start.sh
+│ └── stop.sh
+│
 ├── .gitignore
-
 ├── .env.example
-
 ├── sonar-project.properties
-
-└── README.md
+├── README.md
+└── LICENSE
+text
 
 
 ## 📋 Pré-requisitos
 
-
-| Ferramenta | Versão | Comando |
-
-|------------|--------|---------|
-
+| Ferramenta | Versão | Comando para verificar |
+|------------|--------|----------------------|
 | Docker | 20.10+ | `docker --version` |
-
 | Docker Compose | 2.x+ | `docker-compose --version` |
-
 | Git | 2.x+ | `git --version` |
-
 | Node.js | 18.x+ | `node --version` |
 
 ## 🚀 Como Executar
@@ -146,95 +190,112 @@ MediCare/
 git clone https://github.com/7elprado/MediCare.git
 cd MediCare
 
-## 2. Execute com Docker Compose
+2. Acesse a tag da etapa 2 (versão final)
+bash
+
+git checkout etapa2
+
+3. Execute com Docker Compose
 bash
 
 cd docker
 docker-compose up -d
 
-3. Acesse a aplicação
-
-    Frontend: http://localhost
-
-    Backend API: http://localhost:3000/api/health
-
+4. Acesse a aplicação
+Serviço	URL
+Frontend	http://localhost:3000
+Backend API	http://localhost:3001/api/health
+Listar Medicamentos	http://localhost:3001/api/medicamentos
 🔌 API Endpoints
+Health Check
+Método	Endpoint	Descrição
+GET	/api/health	Verifica status da API
+Medicamentos
 Método	Endpoint	Descrição
 GET	/api/medicamentos	Lista todos medicamentos
-GET	/api/medicamentos/:id	Busca por ID
+GET	/api/medicamentos/:id	Busca medicamento por ID
 POST	/api/medicamentos	Cria novo medicamento
 PUT	/api/medicamentos/:id	Atualiza medicamento
 DELETE	/api/medicamentos/:id	Remove medicamento
-Exemplos de uso
-bash
+Horários
+Método	Endpoint	Descrição
+GET	/api/horarios	Lista horários
+POST	/api/horarios	Cria horário
+PUT	/api/horarios/:id	Atualiza horário
+DELETE	/api/horarios/:id	Remove horário
+Registros
+Método	Endpoint	Descrição
+GET	/api/registros	Lista registros
+GET	/api/registros/hoje	Registros de hoje
+POST	/api/registros	Registra tomada
+Relatórios
+Método	Endpoint	Descrição
+GET	/api/relatorios/adesao	Relatório de adesão
+GET	/api/relatorios/horarios-hoje	Horários do dia
+
+🧪 Testando a API com cURL
 
 # Health check
-curl http://localhost:3000/api/health
+curl http://localhost:3001/api/health
 
 # Listar medicamentos
-curl http://localhost:3000/api/medicamentos
+curl http://localhost:3001/api/medicamentos
 
 # Criar medicamento
-curl -X POST http://localhost:3000/api/medicamentos \
+curl -X POST http://localhost:3001/api/medicamentos \
   -H "Content-Type: application/json" \
-  -d '{"nome":"Paracetamol","descricao":"Febre e dor","dosagem":"500mg"}'
+  -d '{"nome":"Paracetamol","descricao":"Dor e febre","dosagem":"500mg"}'
 
 # Atualizar medicamento
-curl -X PUT http://localhost:3000/api/medicamentos/1 \
+curl -X PUT http://localhost:3001/api/medicamentos/1 \
   -H "Content-Type: application/json" \
   -d '{"nome":"Paracetamol 750mg"}'
 
 # Deletar medicamento
-curl -X DELETE http://localhost:3000/api/medicamentos/1
+curl -X DELETE http://localhost:3001/api/medicamentos/1
 
-🔄 CI/CD Pipeline
-Jenkins Pipeline Stages
+# Relatório de adesão
+curl http://localhost:3001/api/relatorios/adesao
 
-    Checkout - Clona o código
+# Registrar tomada
+curl -X POST http://localhost:3001/api/registros \
+  -H "Content-Type: application/json" \
+  -d '{"medicamento_id":1}'
 
-    SonarQube Analysis - Análise de qualidade
+🔧 Comandos Úteis
 
-    Build - Build das imagens Docker
+# Subir containers
+cd docker && docker-compose up -d
 
-    Test - Execução de testes
+# Ver status
+docker-compose ps
 
-    Deploy - Deploy em produção
+# Ver logs
+docker-compose logs -f
 
-Iniciar Jenkins
-bash
+# Ver logs do backend
+docker-compose logs -f backend
 
-cd docker
-docker-compose up -d jenkins
-# Acesse: http://localhost:8080
+# Ver logs do frontend
+docker-compose logs -f frontend
 
-📊 Qualidade de Código - SonarQube
-Métrica	Objetivo	Status Atual
-Confiabilidade	Sem bugs críticos	🟢 Bom
-Manutenibilidade	Baixa dívida técnica	🟢 Bom
-Cobertura de Testes	> 80%	🟡 65%
-Duplicações	< 3%	🟢 0%
-Executar análise local
-bash
+# Parar containers
+docker-compose down
 
-docker-compose up -d sonarqube
-sonar-scanner
+# Reconstruir containers
+docker-compose up -d --build
 
-👥 Equipe de Desenvolvimento
-Nome	RA	Função
-7elprado	[INSERIR RA]	Tech Lead/DevOps
-[Integrante 2]	[INSERIR RA]	Backend Developer
-[Integrante 3]	[INSERIR RA]	Frontend Developer
-📝 Padrões de Commit
-Tipo	Descrição
-feat:	Nova funcionalidade
-fix:	Correção de bug
-docs:	Documentação
-style:	Formatação
-refactor:	Refatoração
-test:	Testes
-chore:	Manutenção
-✅ Status do Projeto
-Etapa 1 - Concluída ✅
+# Acessar banco de dados
+docker exec -it medicare_db psql -U medicare_user -d medicare_db
+
+👥 Integrante da Equipe
+Nome		                        Função
+[samuelprado]		Tech Lead/DevOps - Desenvolvimento FullStack
+[samuelprado]		Backend Developer - API e Banco de dados
+[samuelprado]		Frontend Developer - UI/UX e Componentes
+
+📊 Status do Projeto
+Etapa 1 - Estruturação e Containerização ✅ (100%)
 
     Repositório GitHub criado
 
@@ -254,45 +315,70 @@ Etapa 1 - Concluída ✅
 
     SonarQube configurado
 
-    CRUD completo implementado
-
     README documentado
 
-Etapa 2 - Em desenvolvimento 🚧
+Etapa 2 - Funcionalidades Avançadas ✅ (100%)
 
-    Implementar horários por medicamento
+    CRUD de medicamentos completo
 
-    Adicionar registro de tomadas
+    Definição de horários por medicamento
 
-    Desenvolver histórico diário/semanal
+    Registro de tomadas com data/hora
 
-    Criar relatório de adesão
+    Dashboard com estatísticas
 
-    Implementar dashboard
+    Relatório de adesão ao tratamento
 
-🔧 Comandos Úteis
-bash
+    Histórico visual de tomadas
 
-# Subir todos os serviços
-cd docker && docker-compose up -d
+    Sistema de progresso
 
-# Ver logs
-docker-compose logs -f
+🔄 CI/CD Pipeline
+Jenkins Pipeline Stages
+groovy
 
-# Parar serviços
-docker-compose down
+├── Checkout           # Clona o código do repositório
+├── SonarQube Analysis # Análise de qualidade de código
+├── Build             # Build das imagens Docker
+├── Test              # Execução de testes automatizados
+├── Deploy            # Deploy em produção
+└── Notify            # Notificação do resultado
 
-# Reconstruir imagens
-docker-compose up -d --build
 
-# Ver status dos containers
-docker-compose ps
+
+📝 Padrões de Commit
+Tipo	Descrição
+feat:	Nova funcionalidade
+fix:	Correção de bug
+docs:	Documentação
+style:	Formatação de código
+refactor:	Refatoração de código
+test:	Testes
+chore:	Manutenção e configuração
+
+🤝 Como Contribuir
+
+    Faça um Fork do projeto
+
+    Crie sua branch (git checkout -b feature/nova-feature)
+
+    Commit suas mudanças (git commit -m 'feat: adiciona nova feature')
+
+    Push para a branch (git push origin feature/nova-feature)
+
+    Abra um Pull Request
 
 📄 Licença
-
 Este projeto está sob a licença MIT.
+
+📧 Contato
+
+    GitHub: @7elprado
+
+    Projeto: MediCare Repository
+
 <div align="center">
 
-Desenvolvido com ❤️ para a disciplina de DevOps
+Desenvolvido para a disciplina de DevOps
 
-⭐ https://github.com/7elprado/MediCare ⭐
+⭐ Se este projeto te ajudou, dê uma estrela no GitHub! ⭐
