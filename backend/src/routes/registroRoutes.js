@@ -1,12 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const registroController = require('../controllers/registroController');
 
-router.get('/', (req, res) => {
-    res.json({ message: 'Rota de registros' });
-});
-
-router.post('/', (req, res) => {
-    res.json({ message: 'Registro criado' });
-});
+router.get('/', registroController.listar);
+router.get('/hoje', registroController.getHoje);
+router.post('/', registroController.registrarTomada);
 
 module.exports = router;

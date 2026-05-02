@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS horarios (
+    id SERIAL PRIMARY KEY,
+    medicamento_id INTEGER REFERENCES medicamentos(id) ON DELETE CASCADE,
+    horario TIME NOT NULL,
+    dias_semana INTEGER[] DEFAULT '{0,1,2,3,4,5,6}',
+    ativo BOOLEAN DEFAULT true,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
