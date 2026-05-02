@@ -414,10 +414,15 @@ Jenkins Pipeline Stages
 groovy
 
 ├── Checkout           # Clona o código do repositório
+
 ├── SonarQube Analysis # Análise de qualidade de código
+
 ├── Build             # Build das imagens Docker
+
 ├── Test              # Execução de testes automatizados
+
 ├── Deploy            # Deploy em produção
+
 └── Notify            # Notificação do resultado
 
 
