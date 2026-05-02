@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres:15
+    image: postgres:15-alpine
     container_name: medicare_db
     environment:
       POSTGRES_DB: medicare_db
@@ -16,8 +16,8 @@ services:
     networks:
       - medicare_network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U medicare_user"]
-      interval: 10s
+      test: ["CMD-SHELL", "pg_isready -U medicare_user -d medicare_db"]
+      interval: 5s
       timeout: 5s
       retries: 5
 
@@ -25,9 +25,10 @@ services:
     build: ../backend
     container_name: medicare_backend
     ports:
-      - "3001:3001"
+      - "3001:3000"
     environment:
       NODE_ENV: development
+      PORT: 3000
       DB_HOST: postgres
       DB_PORT: 5432
       DB_NAME: medicare_db

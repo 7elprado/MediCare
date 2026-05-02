@@ -1,110 +1,140 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import HorariosForm from '../components/medicamentos/HorariosForm';
-import MedicamentoList from '../components/medicamentos/MedicamentoList';
 
 const MedicamentosPage = () => {
   const [medicamentos, setMedicamentos] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const [medicamentoSelecionado, setMedicamentoSelecionado] = useState(null);
+  const [editingMed, setEditingMed] = useState(null);
   const [formData, setFormData] = useState({ nome: '', descricao: '', dosagem: '' });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     carregarMedicamentos();
   }, []);
 
   const carregarMedicamentos = async () => {
-    const response = await api.get('/medicamentos');
-    setMedicamentos(response.data);
+    try {
+      const response = await api.get('/medicamentos');
+      setMedicamentos(response.data);
+    } catch (error) {
+      console.error('Erro ao carregar medicamentos:', error);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      if (medicamentoSelecionado) {
-        await api.put(`/medicamentos/${medicamentoSelecionado.id}`, formData);
+      if (editingMed) {
+        await api.put(`/medicamentos/${editingMed.id}`, formData);
       } else {
         await api.post('/medicamentos', formData);
       }
       setFormData({ nome: '', descricao: '', dosagem: '' });
-      setMedicamentoSelecionado(null);
+      setEditingMed(null);
       setShowForm(false);
       carregarMedicamentos();
     } catch (error) {
       console.error('Erro ao salvar:', error);
+      alert('Erro ao salvar medicamento');
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleEdit = (medicamento) => {
-    setMedicamentoSelecionado(medicamento);
+    setEditingMed(medicamento);
     setFormData({
       nome: medicamento.nome,
-      descricao: medicamento.descricao,
-      dosagem: medicamento.dosagem
+      descricao: medicamento.descricao || '',
+      dosagem: medicamento.dosagem || ''
     });
     setShowForm(true);
   };
 
   const handleDelete = async (id) => {
     if (window.confirm('Tem certeza que deseja excluir este medicamento?')) {
-      await api.delete(`/medicamentos/${id}`);
-      carregarMedicamentos();
+      try {
+        await api.delete(`/medicamentos/${id}`);
+        carregarMedicamentos();
+      } catch (error) {
+        console.error('Erro ao deletar:', error);
+        alert('Erro ao deletar medicamento');
+      }
     }
   };
 
   return (
     <div className="medicamentos-page">
-      <div className="header">
-        <h1>📋 Meus Medicamentos</h1>
-        <button onClick={() => setShowForm(!showForm)} className="btn-primary">
+      <div className="page-header">
+        <h1>💊 Meus Medicamentos</h1>
+        <button className="btn-primary" onClick={() => { setShowForm(!showForm); setEditingMed(null); setFormData({ nome: '', descricao: '', dosagem: '' }); }}>
           {showForm ? 'Cancelar' : '+ Novo Medicamento'}
         </button>
       </div>
 
       {showForm && (
-        <div className="form-container">
-          <h2>{medicamentoSelecionado ? 'Editar' : 'Novo'} Medicamento</h2>
+        <div className="form-card">
+          <h3>{editingMed ? 'Editar Medicamento' : 'Novo Medicamento'}</h3>
           <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Nome do medicamento"
-              value={formData.nome}
-              onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Dosagem (ex: 500mg)"
-              value={formData.dosagem}
-              onChange={(e) => setFormData({ ...formData, dosagem: e.target.value })}
-            />
-            <textarea
-              placeholder="Descrição"
-              value={formData.descricao}
-              onChange={(e) => setFormData({ ...formData, descricao: e.target.value })}
-            />
-            <button type="submit" className="btn-success">
-              {medicamentoSelecionado ? 'Atualizar' : 'Salvar'}
+            <div className="form-group">
+              <label>Nome do Medicamento *</label>
+              <input
+                type="text"
+                placeholder="Ex: Paracetamol"
+                value={formData.nome}
+                onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Dosagem</label>
+              <input
+                type="text"
+                placeholder="Ex: 500mg"
+                value={formData.dosagem}
+                onChange={(e) => setFormData({ ...formData, dosagem: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
+              <label>Descrição</label>
+              <textarea
+                placeholder="Descrição do medicamento..."
+                value={formData.descricao}
+                onChange={(e) => setFormData({ ...formData, descricao: e.target.value })}
+                rows="3"
+              />
+            </div>
+            <button type="submit" className="btn-success" disabled={loading}>
+              {loading ? 'Salvando...' : (editingMed ? 'Atualizar' : 'Salvar')}
             </button>
           </form>
         </div>
       )}
 
-      <div className="medicamentos-container">
-        {medicamentos.map(med => (
-          <div key={med.id} className="medicamento-card">
-            <div className="medicamento-header">
-              <h3>{med.nome}</h3>
-              <div className="actions">
-                <button onClick={() => handleEdit(med)} className="btn-edit">✏️</button>
-                <button onClick={() => handleDelete(med.id)} className="btn-delete">🗑️</button>
-              </div>
-            </div>
-            <p className="dosagem">{med.dosagem}</p>
-            <p className="descricao">{med.descricao}</p>
-            <HorariosForm medicamentoId={med.id} />
+      <div className="medicamentos-grid">
+        {medicamentos.length === 0 ? (
+          <div className="empty-state">
+            <p>📭 Nenhum medicamento cadastrado</p>
+            <button className="btn-primary" onClick={() => setShowForm(true)}>+ Cadastrar primeiro medicamento</button>
           </div>
-        ))}
+        ) : (
+          medicamentos.map(med => (
+            <div key={med.id} className="medicamento-card">
+              <div className="medicamento-header">
+                <h3>{med.nome}</h3>
+                <div className="card-actions">
+                  <button className="btn-edit" onClick={() => handleEdit(med)}>✏️ Editar</button>
+                  <button className="btn-delete" onClick={() => handleDelete(med.id)}>🗑️ Excluir</button>
+                </div>
+              </div>
+              {med.dosagem && <p className="dosagem">💊 {med.dosagem}</p>}
+              {med.descricao && <p className="descricao">{med.descricao}</p>}
+              <HorariosForm medicamentoId={med.id} onHorarioAdicionado={carregarMedicamentos} />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

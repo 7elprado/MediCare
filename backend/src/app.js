@@ -26,7 +26,7 @@ app.use('/api/relatorios', relatorioRoutes);
 
 // Middleware de erro
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  console.error('Erro:', err.stack);
   res.status(500).json({ error: 'Algo deu errado!' });
 });
 
