@@ -53,7 +53,6 @@ Ajudar usuários a não esquecerem seus medicamentos, promovendo maior adesão a
 
 ### DevOps & Infrastructure
 | Tecnologia | Versão | Finalidade |
-
 |------------|--------|------------|
 | Docker | 24.x | Containerização |
 | Docker Compose | 2.x | Orquestração de containers |
