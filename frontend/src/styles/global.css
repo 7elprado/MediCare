@@ -1,3 +1,26 @@
+/* ============================================
+   MEDICARE - PROFESSIONAL MINIMALIST DESIGN
+   ============================================ */
+
+/* Root Variables */
+:root {
+  --primary: #20B2AA;
+  --primary-dark: #1a9e97;
+  --success: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --dark: #2c3e50;
+  --gray: #6c757d;
+  --light: #f8f9fa;
+  --border: #e9ecef;
+  --white: #ffffff;
+  --shadow: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -6,282 +29,2168 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
+  background: #f5f7fa;
+  color: var(--dark);
+  line-height: 1.4;
 }
 
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
 .header {
-  background: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 .header-container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 60px;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #667eea;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
   text-decoration: none;
 }
 
 .nav-menu {
   display: flex;
-  gap: 2rem;
+  gap: 24px;
 }
 
 .nav-menu a {
   text-decoration: none;
-  color: #666;
-  font-weight: 500;
-  transition: color 0.3s;
+  color: var(--gray);
+  font-size: 0.9rem;
+  transition: color 0.2s;
 }
 
 .nav-menu a:hover,
 .nav-menu a.active {
-  color: #667eea;
+  color: var(--primary);
 }
 
-.main-content {
-  min-height: calc(100vh - 70px);
-  padding: 2rem 0;
+/* Dashboard */
+.dashboard-container {
+  padding: 24px 0;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+.dashboard-header {
+  margin-bottom: 24px;
 }
 
-/* Botões */
-.btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+.dashboard-header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+.saudacao {
+  color: var(--primary);
+  font-size: 0.85rem;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 16px;
+  border: 1px solid var(--border);
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: transform 0.2s;
+  transition: all 0.2s;
 }
 
-.btn-primary:hover {
+.stat-card:hover {
   transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
-.btn-success {
-  background: #28a745;
-  color: white;
+.stat-icon {
+  font-size: 1.5rem;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 4px 0;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-detail {
+  font-size: 0.7rem;
+  color: var(--gray);
+  margin-top: 4px;
+}
+
+/* Alertas */
+.alertas-container {
+  background: #fff8e7;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  border-left: 3px solid var(--warning);
+}
+
+.alertas-container h3 {
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+  color: #856404;
+}
+
+.alerta-item {
+  font-size: 0.8rem;
+  padding: 4px 0;
+}
+
+.alerta-alta {
+  color: var(--danger);
+}
+
+/* Tabs */
+.tabs-container {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+}
+
+.tab {
+  background: none;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  padding: 6px 16px;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.8rem;
+  transition: all 0.2s;
 }
 
-.btn-danger {
-  background: #dc3545;
-  color: white;
+.tab.active {
+  background: var(--primary);
+  color: var(--white);
+}
+
+/* Medicamentos Lista */
+.medicamentos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.medicamento-card-expanded {
+  background: var(--light);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  border-left: 3px solid var(--gray);
+}
+
+.medicamento-card-expanded.tomado {
+  border-left-color: var(--success);
+  background: #f0fff4;
+}
+
+.medicamento-card-expanded.pendente {
+  border-left-color: var(--warning);
+  background: #fffbf0;
+}
+
+.medicamento-header-expanded {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.medicamento-status {
+  font-size: 1.25rem;
+}
+
+.medicamento-info-expanded {
+  flex: 1;
+}
+
+.medicamento-info-expanded h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.medicamento-info-expanded p {
+  font-size: 0.75rem;
+  color: var(--gray);
+}
+
+.btn-tomar {
+  background: var(--success);
+  color: var(--white);
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  padding: 6px 12px;
+  border-radius: 20px;
   cursor: pointer;
+  font-size: 0.7rem;
 }
 
-.btn-edit {
-  background: #ffc107;
-  color: #333;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 0.5rem;
+/* Horários */
+.horarios-med-container {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.btn-delete {
-  background: #dc3545;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
+.horarios-med-label {
+  font-size: 0.7rem;
+  color: var(--gray);
 }
 
-/* Cards */
-.form-card {
-  background: white;
-  padding: 2rem;
+.horarios-med-list {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.horario-med-badge {
+  background: rgba(32, 178, 170, 0.1);
+  color: var(--primary);
+  padding: 2px 8px;
   border-radius: 12px;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-size: 0.7rem;
+}
+
+/* Gráfico */
+.graph-section {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 16px;
+}
+
+.graph-section h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.graph-bars {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 120px;
+}
+
+.graph-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+}
+
+.graph-bar {
+  width: 24px;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s;
+}
+
+.graph-value {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.graph-label {
+  font-size: 0.65rem;
+  color: var(--gray);
+  margin-top: 6px;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--white);
+  border-radius: var(--radius);
+  max-width: 400px;
+  width: 90%;
+  max-height: 70vh;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--gray);
+}
+
+.modal-body {
+  padding: 16px;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.modal-item {
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.modal-item-success {
+  background: #f0fff4;
+  border-left: 3px solid var(--success);
+}
+
+.modal-item-warning {
+  background: #fffbf0;
+  border-left: 3px solid var(--warning);
+}
+
+.modal-item-info {
+  background: #f0f7ff;
+  border-left: 3px solid var(--primary);
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
+.sem-dados {
+  text-align: center;
+  padding: 30px;
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+/* Medicamentos Page */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.page-header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.form-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.form-card h3 {
+  font-size: 1rem;
+  margin-bottom: 16px;
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 12px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  color: #333;
+  margin-bottom: 4px;
+  color: var(--gray);
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.btn-success {
+  background: var(--success);
+  color: var(--white);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
 }
 
 .medicamentos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
 }
 
 .medicamento-card {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.medicamento-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.medicamento-card.selected {
+  border: 1px solid var(--primary);
+  background: #f8fffe;
 }
 
 .medicamento-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 8px;
 }
 
 .medicamento-header h3 {
-  color: #333;
-  font-size: 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit, .btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+.btn-edit:hover, .btn-delete:hover {
+  opacity: 1;
 }
 
 .dosagem {
-  color: #667eea;
-  font-weight: 500;
-  margin: 0.5rem 0;
+  font-size: 0.75rem;
+  color: var(--primary);
+  margin-bottom: 4px;
 }
 
 .descricao {
-  color: #666;
-  margin: 0.5rem 0;
+  font-size: 0.75rem;
+  color: var(--gray);
+}
+
+/* Horários Form */
+.horarios-container {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.horarios-header h4 {
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+.novo-horario-form {
+  background: var(--light);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.form-group-small {
+  flex: 0 0 90px;
+}
+
+.form-group-small label {
+  font-size: 0.65rem;
+}
+
+.form-group-small input {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 0.8rem;
+}
+
+.form-group-dias {
+  flex: 1;
+}
+
+.form-group-dias label {
+  font-size: 0.65rem;
+}
+
+.dias-semana-grid {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.dia-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.7rem;
+  transition: all 0.2s;
+}
+
+.dia-btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-add-horario {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  height: 36px;
+}
+
+.horarios-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.horario-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--light);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px;
+}
+
+.horario-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.horario-tempo {
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 0.8rem;
+}
+
+.dias-marcados {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.dia-marcado {
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: white;
+}
+
+.status {
+  font-size: 0.6rem;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.status.active {
+  background: #d4edda;
+  color: var(--success);
+}
+
+.btn-remove-horario {
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.instrucao-horarios {
+  text-align: center;
+  margin-top: 20px;
+  padding: 12px;
+  background: #e8f4f8;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  color: var(--primary);
 }
 
 .empty-state {
   text-align: center;
-  padding: 3rem;
-  background: white;
-  border-radius: 12px;
-  color: #666;
+  padding: 40px;
+  color: var(--gray);
+  font-size: 0.85rem;
 }
 
-.empty-state p {
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
-}
-
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.page-header h1 {
-  color: white;
-  font-size: 2rem;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.stat-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.stat-value {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #667eea;
-  margin: 0.5rem 0;
-}
-
-.registro-tomada,
-.relatorio-section {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-}
-
-.tomada-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  margin: 0.5rem 0;
-  border-radius: 8px;
-  background: #f8f9fa;
-}
-
-.tomada-card.tomado {
-  background: #d4edda;
-}
-
-.btn-tomar {
-  background: #28a745;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.progress-bar {
-  background: #e0e0e0;
+/* Progress Bar */
+.progress-bar-small {
+  background: var(--border);
   border-radius: 10px;
-  height: 30px;
-  position: relative;
-  margin: 0.5rem 0;
+  height: 4px;
+  margin-top: 8px;
+  overflow: hidden;
 }
 
-.progress-fill {
-  background: #667eea;
-  border-radius: 10px;
+.progress-fill-small {
+  background: var(--primary);
   height: 100%;
+  border-radius: 10px;
   transition: width 0.3s;
 }
 
-.progress-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+/* Responsive */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .medicamentos-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .graph-bar {
+    width: 20px;
+  }
+  
+  .graph-bar-container {
+    width: 30px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .form-group-small {
+    flex: auto;
+  }
+  
+  .btn-add-horario {
+    width: 100%;
+  }
+}
+/* Medicamentos Page Complementos */
+.form-row-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.estoque-info {
+  margin-top: 10px;
+  padding: 8px;
+  background: var(--light);
+  border-radius: var(--radius-sm);
+}
+
+.estoque-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  margin-bottom: 6px;
+}
+
+.estoque-alerta {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.medicamento-card.estoque-baixo {
+  border-left: 3px solid var(--danger);
+}
+
+.medicamento-detalhes {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.detalhes-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.tab-detalhe {
+  background: none;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: all 0.2s;
+}
+
+.tab-detalhe.active {
+  background: var(--primary);
+  color: white;
+}
+
+.tab-content {
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.tab-content p {
+  margin-bottom: 8px;
+}
+
+.horario-input {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+}
+
+.estoque-control {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.estoque-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.estoque-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.estoque-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.btn-small {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  flex: 1;
+}
+
+.alerta-compra {
+  background: #fff3cd;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-size: 0.75rem;
+  color: #856404;
+}
+
+.bula-content {
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.sem-bula, .sem-horarios {
+  text-align: center;
+  color: var(--gray);
+  padding: 16px;
+}
+
+.horarios-resumo {
+  margin-top: 8px;
+  font-size: 0.7rem;
+  color: var(--gray);
+}
+
+.fabricante {
+  font-size: 0.7rem;
+  color: var(--gray);
+  margin-top: 2px;
+}
+/* Dashboard com Estoque */
+.botoes-acao {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-comprar {
+  background: var(--warning);
   color: #333;
-  font-weight: bold;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.btn-comprar-pequeno {
+  background: var(--warning);
+  color: #333;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.estoque-info-dashboard {
+  margin-top: 6px;
+}
+
+.estoque-texto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  margin-bottom: 4px;
+}
+
+.estoque-baixo-texto {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.progress-fill-small.danger {
+  background: var(--danger);
+}
+
+.medicamento-card-expanded.estoque-baixo {
+  border-left: 3px solid var(--danger);
+}
+
+.alerta-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.horarios-med-dashboard {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.modal-item.estoque-critico {
+  background: #fff3cd;
+  border-left-color: var(--warning);
+}
+
+/* Cards de estatísticas com cursor */
+.stat-card.clickable {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.stat-card.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+/* Modal Grande */
+.modal-content.large {
+  max-width: 600px;
+  width: 90%;
+}
+
+.modal-info-item {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+
+.modal-info-item strong {
+  font-size: 0.75rem;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.modal-info-item span {
+  font-size: 0.85rem;
+  color: var(--dark);
+  line-height: 1.4;
+}
+
+/* Medicamento Título */
+.medicamento-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.btn-info {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.7rem;
+}
+
+/* Detalhes do Medicamento */
+.medicamento-detalhes {
+  font-size: 0.8rem;
+  color: var(--gray);
+  margin: 4px 0;
+}
+
+.medicamento-descricao {
+  font-size: 0.8rem;
+  color: var(--dark);
+  margin: 8px 0;
+  background: var(--light);
+  padding: 8px;
+  border-radius: var(--radius-sm);
+}
+
+/* Progresso de Doses */
+.progresso-doses {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.progresso-doses span {
+  font-size: 0.7rem;
+  color: var(--gray);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Horários do Dia */
+.horarios-do-dia {
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--light);
+  border-radius: var(--radius);
+}
+
+.horarios-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.horarios-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.horario-dose {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: white;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--gray);
+}
+
+.horario-dose.tomada {
+  border-left-color: var(--success);
+  background: #f0fff4;
+}
+
+.horario-dose.pendente {
+  border-left-color: var(--warning);
+  background: #fffbf0;
+}
+
+.dose-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dose-horario {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--dark);
+}
+
+.dose-status {
+  font-size: 0.7rem;
+}
+
+.btn-dose {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.7rem;
+}
+
+.btn-dose:disabled {
+  background: var(--gray);
+  cursor: not-allowed;
+}
+
+/* Informações Adicionais */
+.informacoes-adicionais {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.75rem;
+}
+
+.info-label {
+  font-weight: 600;
+  color: var(--primary);
+  min-width: 100px;
+}
+
+.info-value {
+  color: var(--dark);
+  flex: 1;
+}
+
+/* Botão Comprar */
+.btn-comprar-pequeno {
+  background: var(--warning);
+  color: #333;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  margin-top: 8px;
+  font-weight: 600;
+}
+/* Dashboard Cards */
+.stat-card {
+  cursor: pointer;
+}
+
+/* Estoque Info */
+.estoque-info {
+  margin-top: 12px;
+  padding: 8px;
+  background: var(--light);
+  border-radius: var(--radius-sm);
+}
+
+.estoque-texto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  margin-bottom: 6px;
+}
+
+.estoque-baixo-texto {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.btn-comprar {
+  background: var(--warning);
+  color: #333;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.btn-comprar-pequeno {
+  background: var(--warning);
+  color: #333;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.65rem;
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+/* Progresso Doses */
+.progresso-doses {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.progresso-doses span {
+  font-size: 0.65rem;
+  color: var(--gray);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Horários do Dia */
+.horarios-do-dia {
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--light);
+  border-radius: var(--radius);
+}
+
+.horarios-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.horarios-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.horario-dose {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: white;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--gray);
+}
+
+.horario-dose.tomada {
+  border-left-color: var(--success);
+  background: #f0fff4;
+}
+
+.horario-dose.pendente {
+  border-left-color: var(--warning);
+  background: #fffbf0;
+}
+
+.dose-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dose-horario {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--dark);
+}
+
+.dose-status {
+  font-size: 0.65rem;
+}
+
+.btn-dose {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.7rem;
+}
+
+.btn-dose:disabled {
+  background: var(--gray);
+  cursor: not-allowed;
+}
+
+/* Informações Adicionais */
+.informacoes-adicionais {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.7rem;
+}
+
+.info-label {
+  font-weight: 600;
+  color: var(--primary);
+  min-width: 95px;
+}
+
+.info-value {
+  color: var(--dark);
+  flex: 1;
+}
+
+/* Alertas */
+.alerta-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.progress-fill-small.danger {
+  background: var(--danger);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: var(--gray);
+}
+
+.empty-state button {
+  margin-top: 16px;
+}
+
+/* Modal */
+.modal-content.large {
+  max-width: 550px;
+  width: 90%;
+}
+
+.info-group {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 6px;
+}
+
+.info-group strong {
+  font-size: 0.7rem;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.info-group span {
+  font-size: 0.85rem;
+  color: var(--dark);
+  line-height: 1.4;
+}
+
+/* Botão Info */
+.btn-info {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 3px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.65rem;
+}
+
+.medicamento-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.medicamento-header-expanded {
+  display: flex;
+  gap: 12px;
+}
+
+.medicamento-status {
+  font-size: 1.5rem;
+}
+
+.medicamento-info-expanded {
+  flex: 1;
+}
+
+.medicamento-detalhes {
+  font-size: 0.75rem;
+  color: var(--gray);
+  margin: 4px 0;
+}
+
+.medicamento-descricao {
+  font-size: 0.75rem;
+  color: var(--dark);
+  margin: 6px 0;
+  background: var(--light);
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+}
+/* Cards clicáveis */
+.stat-card.clickable {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.stat-card.clickable:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Modal info items */
+.modal-info-item {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 6px;
+}
+
+.modal-info-item strong {
+  font-size: 0.75rem;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.modal-info-item span {
+  font-size: 0.85rem;
+  color: var(--dark);
+  line-height: 1.4;
+}
+/* Gestão de Estoque */
+.estoque-section {
+  background: var(--light);
+  padding: 16px;
+  border-radius: var(--radius);
+  margin: 16px 0;
+  border: 1px solid var(--border);
+}
+
+.estoque-section h4 {
+  margin-bottom: 16px;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.estoque-widget {
+  background: var(--light);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  margin-top: 12px;
+}
+
+.estoque-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.estoque-titulo {
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.estoque-status {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.estoque-status.normal {
+  background: #d4edda;
+  color: #28a745;
+}
+
+.estoque-status.baixo {
+  background: #fff3cd;
+  color: #fd7e14;
+}
+
+.estoque-status.critico {
+  background: #f8d7da;
+  color: #dc3545;
+}
+
+.estoque-status.esgotado {
+  background: #f8d7da;
+  color: #dc3545;
+}
+
+.estoque-detalhes {
+  display: flex;
+  gap: 16px;
+  margin: 8px 0;
+  font-size: 0.7rem;
+}
+
+.estoque-item {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-fill.normal {
+  background: #28a745;
+}
+
+.progress-fill.baixo {
+  background: #fd7e14;
+}
+
+.progress-fill.critico {
+  background: #dc3545;
+}
+
+.btn-comprar-rapido {
+  margin-top: 8px;
+  width: 100%;
+  background: var(--warning);
+  color: #333;
+  border: none;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.estoque-control-avancado {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.estoque-info-completa h4,
+.estoque-actions-avancado h4 {
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.action-group label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  flex: 1;
+}
+
+.qtd-custom {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.qtd-custom input {
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.btn-comprar {
+  background: var(--warning);
+  color: #333;
+}
+
+.medicamento-card.critico {
+  border-left: 4px solid #dc3545;
+}
+
+.medicamento-card.baixo {
+  border-left: 4px solid #fd7e14;
+}
+/* Estatísticas Avançadas */
+.stats-avancadas {
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.stat-avancada {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 120px;
+}
+
+.stat-avancada-icon {
+  font-size: 1.8rem;
+}
+
+.stat-avancada-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-avancada-valor {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.stat-avancada-label {
+  font-size: 0.7rem;
+  color: var(--gray);
+}
+
+/* Taxa de Adesão em Destaque */
+.taxa-adesao-destaque {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  background: rgba(32, 178, 170, 0.1);
+  padding: 8px 16px;
+  border-radius: 50px;
+  margin-top: 8px;
+}
+
+.taxa-valor {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.taxa-label {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+/* Top Medicamentos */
+.top-medicamentos {
+  background: white;
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.top-medicamentos h3 {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  color: var(--dark);
+}
+
+.top-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.top-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  background: var(--light);
+  border-radius: var(--radius-sm);
+}
+
+.top-posicao {
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 40px;
+}
+
+.top-nome {
+  flex: 1;
+  font-weight: 500;
+}
+
+.top-qtd {
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+/* Próximos Horários */
+.proximos-horarios {
+  background: white;
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.proximos-horarios h3 {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  color: var(--dark);
+}
+
+.proximos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.proximo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: var(--light);
+  border-radius: var(--radius-sm);
+  flex-wrap: wrap;
+}
+
+.proximo-horario {
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 70px;
+}
+
+.proximo-medicamento {
+  flex: 1;
+}
+
+.proximo-tempo {
+  color: var(--warning);
+  font-size: 0.8rem;
+}
+
+.btn-proximo {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.7rem;
+}
+
+/* Medicamento Completo */
+.medicamento-card-expanded.completo {
+  background: #d4edda;
+  border-left: 4px solid #28a745;
+}
+
+.estoque-embalagens {
+  font-size: 0.65rem;
+  color: var(--gray);
+  margin-left: 8px;
+}
+/* ============================================
+   ALERTAS E NOTIFICAÇÕES - MEDICARE
+   ============================================ */
+
+/* Alertas de Estoque */
+.alertas-container {
+  background: linear-gradient(135deg, #fff8e7 0%, #fff3cd 100%);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+  border-left: 5px solid #ffc107;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.alertas-container:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.alertas-container h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #856404;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.alerta-item {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 193, 7, 0.3);
+  animation: fadeInUp 0.3s ease;
+}
+
+.alerta-item:last-child {
+  border-bottom: none;
+}
+
+.alerta-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.alerta-info span {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #856404;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-comprar {
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+  color: #333;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 700;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-comprar:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Toast de Notificação Flutuante */
+.toast-notification {
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  z-index: 1000;
+  min-width: 320px;
+  max-width: 400px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  animation: slideInRight 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  overflow: hidden;
+  border-left: 4px solid #20B2AA;
+}
+
+.toast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #20B2AA 0%, #1a9e97 100%);
+  color: white;
+}
+
+.toast-header span {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toast-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.toast-header button:hover {
+  opacity: 1;
+}
+
+.toast-body {
+  padding: 16px;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.toast-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  transition: all 0.2s;
+}
+
+.toast-item:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+}
+
+.toast-item div strong {
+  color: #1a2a3a;
+  font-size: 0.9rem;
+}
+
+.toast-item div small {
+  color: #6c757d;
+  font-size: 0.7rem;
+}
+
+/* Alertas de Estoque Baixo nos Cards */
+.estoque-baixo-texto {
+  color: #dc3545;
+  font-weight: 700;
+  animation: pulse 1.5s infinite;
+  background: rgba(220, 53, 69, 0.1);
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+}
+
+.medicamento-card-expanded.estoque-baixo {
+  border-left: 4px solid #dc3545;
+  background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+}
+
+.progress-fill-small.danger {
+  background: linear-gradient(90deg, #dc3545 0%, #ff6b6b 100%);
+}
+
+/* Alertas Inteligentes (Tipo) */
+.alerta-alta {
+  background: linear-gradient(135deg, #f8d7da 0%, #fce4e4 100%);
+  border-left: 4px solid #dc3545;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+
+.alerta-media {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  border-left: 4px solid #ffc107;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+
+.alerta-baixa {
+  background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+  border-left: 4px solid #17a2b8;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+
+.alerta-alta .alerta-info span,
+.alerta-media .alerta-info span,
+.alerta-baixa .alerta-info span {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Badge de Alerta */
+.badge-alerta {
+  background: #dc3545;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  animation: pulse 1.5s infinite;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+/* Ícones de Alerta */
+.alerta-icon {
+  font-size: 1.2rem;
+  margin-right: 8px;
+}
+
+/* Animações */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Responsividade para alertas */
+@media (max-width: 768px) {
+  .toast-notification {
+    left: 16px;
+    right: 16px;
+    min-width: auto;
+    max-width: none;
+    top: 70px;
+  }
+  
+  .alerta-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .btn-comprar {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .alertas-container {
+    padding: 16px;
+  }
+}
+
+/* Tooltip de Alerta */
+.tooltip-alerta {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip-alerta:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+/* Som de Alerta Visual */
+.alerta-som {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.alerta-som:hover {
+  transform: scale(1.05);
+}
+
+/* Contador de Alertas */
+.alerta-badge {
+  background: #dc3545;
+  color: white;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  margin-left: 6px;
+  animation: pulse 1.5s infinite;
+}
+
+/* Toast de Sucesso para Registro */
+.toast-success {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  animation: slideInUp 0.3s ease;
+  font-weight: 500;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

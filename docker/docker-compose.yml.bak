@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   postgres:
     image: postgres:15-alpine
@@ -11,8 +13,6 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ../database/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
     networks:
       - medicare_network
     healthcheck:
@@ -27,6 +27,7 @@ services:
     ports:
       - "3001:3000"
     environment:
+      TZ=America/Sao_Paulo
       NODE_ENV: development
       PORT: 3000
       DB_HOST: postgres
@@ -34,14 +35,12 @@ services:
       DB_NAME: medicare_db
       DB_USER: medicare_user
       DB_PASSWORD: medicare_password
-    volumes:
-      - ../backend:/app
-      - /app/node_modules
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
     depends_on:
       postgres:
         condition: service_healthy
+    volumes:
+      - ../backend:/app
+      - /app/node_modules
     networks:
       - medicare_network
     command: npm run dev
