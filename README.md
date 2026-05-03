@@ -409,6 +409,10 @@ Etapa 2 - Funcionalidades Avançadas ✅ (100%)
 
     Sistema de progresso
 
+    Sistema de notificação
+
+    Sistema de controle de estoque
+    
 🔄 CI/CD Pipeline
 Jenkins Pipeline Stages
 groovy
